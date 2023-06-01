@@ -1,13 +1,7 @@
 |     ID     |     Genre     |     Title     |     Author     |   Purchase Price JOD   |   Purchase Date   |
-| 1          | Sci-fi        | Stars         | author_1       | 10                     | 1/8/2010          |
-| 2          | Fantacy       | Aliens?       | author_2       | 10                     | 1/2/2014          |
-| 3          | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
-| 4          | English       | Eng 101       | author_4       | 10                     | 3/7/1999          |
-| 5          | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
-| 10         | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
-| 100        | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
-| 9          | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
-| 88         | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
-| 44         | English       | Eng 101       | author_4       | 10                     | 3/7/1999          |
-| 99         | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
-| 93         | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
+| 1          | Fantacy       | Aliens        | ahmad          | 20                     | 1/2/2002          |
+| 2          | Math          | Simple Math   | Mazen          | 44                     | 22/1/2000         |
+| 22         | English       | English 101   | Subhi          | 20                     | 3/3/2003          |
+| 23         | English       | English 102   | Subhi          | 35                     | 10/10/2006        |
+| 9          | Novel         | Witcher       | jhon           | 60                     | 11/5/2015         |
+| 10         | Novel         | Witcher 2     | jhon           | 70                     | 11/5/2015         |
