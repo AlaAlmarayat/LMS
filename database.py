@@ -49,7 +49,11 @@ def insert(filePath,listItems, listTableHeader,type):
       if searchMemberID(listTableHeader[0])==0 and type == "Members" :
            f.write(header_row)
            f.write('\n')
-
+      
+      if type == "Logs":
+           f.write(header_row)
+           f.write('\n')
+           
       for item in listItems:
         # writing each row to a string,
         # then printing the string, is better for performance:)
@@ -70,6 +74,10 @@ def insert(filePath,listItems, listTableHeader,type):
            f.write(s)
            f.write('\n')
 
+        if type == "Logs":
+           f.write(s)
+           f.write('\n')
+        
       print(nice_horizontal_rule)
 # ------------------------------------------------------------------------ #
 
@@ -108,6 +116,29 @@ def addMembers():
     insert(membersFilePath ,membersList, membersTableHeader,"Members")
 
 
+def addLog():
+    logList = [
+        ["1","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["2","1004", "Fantacy", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["3","1003", "Math", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["4","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["5","1003", "Novel", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["10","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["100","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["9","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["88","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["44","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["99","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["93","1003", "Sci-fi", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["93","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["88","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+        ["10","1003", "English", "Stars",  "author_1",  "Availabile",  "1/8/2010" ,  "1/8/2010" ],
+    ]
+
+    logTableHeader = ["    Book ID    ", "    Member ID    ", "    Genre    ", "    Title    ", "    Author    ", "  Loan Availability  ", "  Checkout Date  "  , "  Return Date  "]
+    insert(logFilePath ,logList, logTableHeader,"Logs")
+
+addLog()
 # def desgin():
 
 #     global bookInfo1 ,bookInfo2, bookInfo3, bookInfo4, Canvas1, con, cur, bookTable, root

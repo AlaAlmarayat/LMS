@@ -1,10 +1,11 @@
 from tkinter import *
 from PIL import ImageTk,Image #PIL -> Pillow
-from database import *
+from database import *  
 from tkinter import messagebox 
-from design import mainPage
+from design import *
 
 mainPage()
+# searchPage()
 # root = Tk()
 # root.title("Library")
 # root.minsize(width=400,height=400)
@@ -33,7 +34,7 @@ mainPage()
 # headingLabel = Label(headingFrame1, text="Library Management System", bg='alice blue', fg='black', font=('Courier',15))
 # headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
 
-# btn1 = Button(root,text="Book Search",bg='#dce1f5', fg='black')
+# btn1 = Button(root,text="Book Search",bg='#dce1f5', fg='black',command=searchPage)
 # btn1.place(relx=0.28,rely=0.4, relwidth=0.45,relheight=0.1)
     
 # btn2 = Button(root,text="Book Checkout",bg='#dce1f5', fg='black' )
