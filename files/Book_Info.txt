@@ -1,0 +1,13 @@
+|     ID     |     Genre     |     Title     |     Author     |   Purchase Price JOD   |   Purchase Date   |
+| 1          | Sci-fi        | Stars         | author_1       | 10                     | 1/8/2010          |
+| 2          | Fantacy       | Aliens?       | author_2       | 10                     | 1/2/2014          |
+| 3          | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
+| 4          | English       | Eng 101       | author_4       | 10                     | 3/7/1999          |
+| 5          | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
+| 10         | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
+| 100        | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
+| 9          | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
+| 88         | Novel         | Witcher       | author_1       | 10                     | 19/5/1993         |
+| 44         | English       | Eng 101       | author_4       | 10                     | 3/7/1999          |
+| 99         | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
+| 93         | Math          | Simple Math   | author_3       | 10                     | 22/5/2000         |
