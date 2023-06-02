@@ -36,7 +36,6 @@ def getBookStatusByID(ID):
     with open(logFilePath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
-        status = 0
         templist = []
         resultList = []
         
@@ -46,7 +45,7 @@ def getBookStatusByID(ID):
             # check if string present on a current line
             # id = line[0:14]
             templist2  = line.split("|")
-            id = str(templist2[1]).replace(" ","")
+            id = str(templist[1]).replace(" ","")
             fileId = int(id  )
             ID = int(ID)
 
@@ -78,7 +77,14 @@ def searchTitleLog(title):
         for line in lines[1:]:
             # line.lower()
             # check if string present on a current line
-            if line.find(title) != -1 and lines.index != 0:
+            templist2  = line.split("|")
+            lineTitle = str(templist2[4]).replace(" ","").lower()
+            fileTitle = title.lower()
+            # ID = int(ID)
+
+            # if fileId == ID and line.index != 0:
+                
+            if lineTitle.find(fileTitle) != -1 and lines.index != 0:
                 line = line.replace(" ","")
                 templist  = line.split("|")
                 templist.pop(0)
