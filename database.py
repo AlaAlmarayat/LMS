@@ -60,16 +60,6 @@ def insert(filePath,listItems, listTableHeader,type):
            f.write(s)
            f.write('\n')
            print(nice_horizontal_rule)
-        # elif searchMemberID(item[0])==0 and type == "Members":
-        #    print(s)
-        #    f.write(s)
-        #    f.write('\n')
-        #    print(nice_horizontal_rule)
-        # elif  type == "Logs":
-        #    print(s)
-        #    f.write(s)
-        #    f.write('\n')
-        #    print(nice_horizontal_rule)
         else: 
            status = "Book ID already exists!" 
            
@@ -114,4 +104,44 @@ def update(ID,oldStatus,newStatus):
     return loanAvilabilityStatus  
 # --------------------------------update---------------------------------------- #
 
+# --------------------------------searchLogID---------------------------------------- #
+def getTopGenres(logFilePath):    
+    """
+    search log by ID and get avilability status\n
+    Book ID as an argument (int)\n
+    return status 0 if not exist | 1 if exist 
+    """
+    with open(logFilePath, 'r') as fp:
+        
+        text = fp.readlines()
+        # Create an empty dictionary
+        genreDictionary = dict()
+        
+        
+        # Loop through each line of the file
+        for line in text[1:]:
+            # Remove the leading spaces and newline character
+            line = line.strip()
+            line = line.replace(" ","")            
+            templist  = line.split("|")            
+            genre = templist[3]
+            # Convert the characters in line to
+            # lowercase to avoid case mismatch
+            line = genre.lower()
+        
+            # Split the line into words
+            words = line.split(" ")
+        
+            # Iterate over each word in line
+            for word in words:
+                # Check if the word is already in dictionary
+                if word in genreDictionary:
+                    # Increment count of word by 1
+                    genreDictionary[word] = genreDictionary[word] + 1
+                else:
+                    # Add the word to dictionary with count 1
+                    genreDictionary[word] = 1
+              
 
+    return genreDictionary  
+# --------------------------------searchLogID---------------------------------------- #

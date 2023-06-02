@@ -25,9 +25,9 @@ logFilePath ='.\\files\\logfile.txt'
 # # --------------------------------searchMemberID---------------------------------------- #
 
 # --------------------------------searchLogID---------------------------------------- #
-def searchLogID(ID):    
+def getBookStatusByID(ID):    
     """
-    search book log by ID\n
+    search log by ID and get avilability status\n
     Book ID as an argument (int)\n
     return status 0 if not exist | 1 if exist 
     """
@@ -145,7 +145,7 @@ def searchTitle(title):
 # --------------------------------searchID---------------------------------------- #
 def searchID(filepath,ID):
     """
-    search book log by ID\n
+    search by ID\n
     Book ID as an 1st argument (int)\n
     return list of books
     """

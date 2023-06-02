@@ -1,4 +1,4 @@
-from database import *
+from database import getTopGenres,insert
 from modules.bookSearch import *
 
 transactionHistoryTableHeader = ["    Book ID    ", "    Member ID    ", "    Genre    ", "    Title    ", "    Author    ", "  Purchase Price JOD  ", "  Loan Availability  "]
@@ -20,4 +20,7 @@ def addTransactionHistoryRecord (ID):
      
     insert(bookTransactionHistoryFilePath ,transactionHistory, transactionHistoryTableHeader,"History") 
 
-      
+def selectTopGenres(logFilePath):
+    return getTopGenres(logFilePath)     
+
+# selectTopGenres(bookTransactionHistoryFilePath)    
