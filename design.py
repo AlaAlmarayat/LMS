@@ -1,8 +1,13 @@
 from tkinter import *
-from PIL import ImageTk,Image #PIL -> Pillow
+from PIL import ImageTk,Image
+from modules.bookSelect import *
+from modules.bookCheckout import *
+from modules.bookReturn import * #PIL -> Pillow
 from database import *  
 from tkinter import messagebox 
 from tkinter import ttk
+import matplotlib.pyplot as plt
+# import seaborn as sns
 
 
 rootS = Tk
@@ -12,7 +17,12 @@ logFilePath ='.\\files\\logfile.txt'
 # listData = ttk.Treeview()
 # global ws_ent
 
+# --------------------------------background---------------------------------------- #
 def background(root,title):
+    """
+    resuable GUI background 
+    """
+
     same=True
     n=1
     # Adding a background image
@@ -39,25 +49,35 @@ def background(root,title):
     headingFrame1.place(relx=0.2,rely=0.1,relwidth=0.6,relheight=0.16)
     headingLabel = Label(headingFrame1, text=title, bg='alice blue', fg='black', font=('Courier',15))
     headingLabel.place(relx=0,rely=0, relwidth=1, relheight=1)
-        
+# --------------------------------background---------------------------------------- #
+
+# --------------------------------button---------------------------------------- #        
 def button(root,buttonText,rely,command):
+    """
+    resuable GUI button 
+    """
     btn1 = Button(root,text=buttonText,bg='alice blue', fg='black' ,command=command)
     btn1.place(relx=0.28,rely=rely, relwidth=0.45,relheight=0.1)
+# --------------------------------button---------------------------------------- #
 
-def emptyView(rootS):    
+# --------------------------------emptyView---------------------------------------- #
+def emptyView(rootS): 
+    """
+    resuable GUI table 
+    """   
     # rootS.focus()
     global treeview
     scrollbarx = Scrollbar(rootS, orient=HORIZONTAL)  
     scrollbary = Scrollbar(rootS, orient=VERTICAL)    
-    treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22)  
+    treeview = ttk.Treeview(rootS, columns=("Grene", "Title", "Author", "Loan Availabilty"), show='headings', height=22)  
     
 
     treeview.pack()
-    treeview.heading('Grene', text="Title", anchor=CENTER)
+    treeview.heading('Grene', text="Grene", anchor=CENTER)
     treeview.column("Grene", stretch=NO, width = 100) 
-    treeview.heading('Title', text="Author", anchor=CENTER)
+    treeview.heading('Title', text="Title", anchor=CENTER)
     treeview.column("Title", stretch=NO)
-    treeview.heading('Author', text="Grene", anchor=CENTER)
+    treeview.heading('Author', text="Author", anchor=CENTER)
     treeview.column("Author", stretch=NO)
     treeview.heading('Loan Availabilty', text="Loan Availabilty", anchor=CENTER)
     treeview.column("Loan Availabilty", stretch=NO)
@@ -76,8 +96,14 @@ def emptyView(rootS):
         
 
     return treeview
+# --------------------------------emptyView---------------------------------------- #
 
+# --------------------------------mainPage---------------------------------------- #
 def mainPage():
+    """
+    generate main page 
+    """
+
     root = Tk()
     root.title("Library")
     root.minsize(width=400,height=400)
@@ -88,15 +114,19 @@ def mainPage():
     button(root,"Book Search",0.4,searchPage)
     button(root,"Book Checkout",0.5,bookCheckoutPage)
     button(root,"Book Return",0.6,returnBookPage)
-    button(root,"Book Select",0.7,searchPage)
+    button(root,"Book Select",0.7,bookSelectPage)
     button(root,"Add Book",0.8,addBookPage)
     root.mainloop()
+# --------------------------------mainPage---------------------------------------- #
 
-def showData():
-    # rootS.delete(0, END)     
-    # rootS.focus()
+# --------------------------------showData---------------------------------------- #
+def onClickShowData():
+    """
+    get data from book log and view it in the table view 
+    """
+    
     global treeview ,searchEntry
-    clear_all() 
+    onClickReset() 
     searchString =str(searchEntry.get())
 
     if searchString == '':  
@@ -107,15 +137,26 @@ def showData():
     print(logList)
     for f in logList:
         treeview.insert("", END, values=f)
+# --------------------------------showData---------------------------------------- #
 
-def clear_all():
-   global treeview
-    
-#    treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22)  
-   for item in treeview.get_children():
-      treeview.delete(item)
+# --------------------------------clear_all---------------------------------------- #
+def onClickReset():
+    """
+    clear table view data
+    """
+    global treeview
 
+    #    treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22)  
+    for item in treeview.get_children():
+        treeview.delete(item)
+# --------------------------------clear_all---------------------------------------- #
+
+# --------------------------------searchPage---------------------------------------- #
 def searchPage():
+    """
+    generate search page view 
+    """
+
     global searchEntry
     rootS = Tk()
     rootS.title("Book Search")   
@@ -133,9 +174,9 @@ def searchPage():
     # searchString = str(ws_ent.get)
     # print(ws_ent.get)
     
-    ws_btn1 = Button(rootS, text = 'Search',  width = 8, font=('calibri', 12, 'normal'),command=showData)
+    ws_btn1 = Button(rootS, text = 'Search',  width = 8, font=('calibri', 12, 'normal'),command=onClickShowData)
     ws_btn1.place(x = 350, y = 540)
-    ws_btn2 = Button(rootS, text = 'Reset',  width = 8, font=('calibri', 12, 'normal',),command=clear_all)
+    ws_btn2 = Button(rootS, text = 'Reset',  width = 8, font=('calibri', 12, 'normal',),command=onClickReset)
     ws_btn2.place(x = 450, y = 540)
     ws_btn3 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal'), command=rootS.destroy)
     ws_btn3.place(x = 550, y = 540)
@@ -145,13 +186,18 @@ def searchPage():
     # button(root,"Quit",0.9,root.destroy)
 
     rootS.mainloop()
-    
-def retunBook():
-    global ws_ent
+# --------------------------------searchPage---------------------------------------- #
+
+# --------------------------------retunBook---------------------------------------- #    
+def onClickRetunBook():
+    """
+    return a book and update the database
+    """
+    global searchEntry
     returnAuth =""
     # print(ws_ent.get())
-    id = str(ws_ent.get())
-    result = searchLogID2(id)
+    id = str(searchEntry.get())
+    result = searchLogID(id)
     
     # result 0 means no data found 
     # result 1 means a book/s was found  
@@ -165,10 +211,16 @@ def retunBook():
        returnAuth = messagebox.askquestion('Success',"Book Exists and ready to be returned!\n Are you sure you want to do this?")
     
     if returnAuth == "yes":
-        update(id,"not available","available    ")
- 
+        returnBook(id,"not available","available    ")
+        addTransactionHistoryRecord (id)
+# --------------------------------retunBook---------------------------------------- #
+
+# --------------------------------returnBookPage---------------------------------------- # 
 def returnBookPage():
-    global ws_ent
+    """
+    generate return book page
+    """
+    global searchEntry
     rootS = Tk()
     rootS.title("Book Search")   
     rootS.geometry("750x700+400+50")  
@@ -178,12 +230,12 @@ def returnBookPage():
 
     ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
     ws_lbl.place(x = 190, y = 310)
-    ws_ent = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
-    ws_ent.place(x = 100, y = 340)
+    searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
+    searchEntry.place(x = 100, y = 340)
     # searchString = str(ws_ent.get)
     
 
-    ws_btn1 = Button(rootS, text = 'Return',  width = 8, font=('calibri', 12, 'normal'),command=retunBook)
+    ws_btn1 = Button(rootS, text = 'Return',  width = 8, font=('calibri', 12, 'normal'),command=onClickRetunBook)
     ws_btn1.place(x = 400, y = 340)    
     ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
     ws_btn2.place(x = 500, y = 340) 
@@ -193,13 +245,18 @@ def returnBookPage():
     # button(root,"Quit",0.9,root.destroy)
 
     rootS.mainloop()
+# --------------------------------returnBookPage---------------------------------------- #
 
-def bookCheckout():
-    global ws_ent
+# --------------------------------bookCheckout---------------------------------------- #
+def onClickBookCheckout():
+    """
+    checkout a book and update the database
+    """
+    global searchEntry
     returnAuth =""
     # print(ws_ent.get())
-    id = str(ws_ent.get())
-    result = searchLogID2(id)
+    id = str(searchEntry.get())
+    result = searchLogID(id)
     
     # result 0 means no data found 
     # result 1 means a book/s was found  
@@ -213,10 +270,16 @@ def bookCheckout():
        messagebox.showerror('Error',"Book exists and not available!\n Cannot be checked out")
     
     if returnAuth == "yes":
-        update(id,"available    ","not available",)
- 
+       bookCheckOut(id,"available    ","not available")
+       addTransactionHistoryRecord (id)
+# --------------------------------bookCheckout---------------------------------------- #
+
+# --------------------------------bookCheckoutPage---------------------------------------- # 
 def bookCheckoutPage():
-    global ws_ent
+    """
+    generate book checkout page
+    """
+    global searchEntry
     rootS = Tk()
     rootS.title("Book Checkout")   
     rootS.geometry("750x700+400+50")  
@@ -226,17 +289,22 @@ def bookCheckoutPage():
 
     ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
     ws_lbl.place(x = 190, y = 310)
-    ws_ent = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
-    ws_ent.place(x = 100, y = 340)
+    searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
+    searchEntry.place(x = 100, y = 340)
     # searchString = str(ws_ent.get)
     
 
-    ws_btn1 = Button(rootS, text = 'Checkout',  width = 8, font=('calibri', 12, 'normal'),command=bookCheckout)
+    ws_btn1 = Button(rootS, text = 'Checkout',  width = 8, font=('calibri', 12, 'normal'),command=onClickBookCheckout)
     ws_btn1.place(x = 400, y = 340)    
     ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
     ws_btn2.place(x = 500, y = 340) 
+# --------------------------------bookCheckoutPage---------------------------------------- #
 
-def addBook():
+# --------------------------------addBook---------------------------------------- #
+def onClickAddBook():
+    """
+    add a book to the database
+    """
     global bookIdEntry,genreEntry,titleEntry,authorEntry,purchasePriceEntry,purchaseDateEntry
     
     
@@ -259,9 +327,16 @@ def addBook():
     if bookIDExist !="":
         messagebox.showerror('Error',bookIDExist)
     else: 
-        messagebox.showinfo('Success',"Book added successfully!")     
+        rootS.destroy 
+        messagebox.showinfo('Success',"Book added successfully!")   
+         
+# --------------------------------addBook---------------------------------------- #
 
+# --------------------------------addBookPage---------------------------------------- #
 def addBookPage():
+    """
+    generate add book form page
+    """
     global bookIdEntry,genreEntry,titleEntry,authorEntry,purchasePriceEntry,purchaseDateEntry
     rootS = Tk()
     rootS.title("Add Book")   
@@ -316,7 +391,7 @@ def addBookPage():
     purchaseDateEntry.place(relx=0.3,rely=0.85, relwidth=0.62, relheight=0.08)
         
     #Submit Button
-    SubmitBtn = Button(rootS,text="SUBMIT",bg='alice blue', fg='black',command=addBook)
+    SubmitBtn = Button(rootS,text="SUBMIT",bg='alice blue', fg='black',command=onClickAddBook)
     SubmitBtn.place(relx=0.28,rely=0.9, relwidth=0.18,relheight=0.08)
     
     quitBtn = Button(rootS,text="Quit",bg='alice blue', fg='black', command=rootS.destroy)
@@ -326,5 +401,58 @@ def addBookPage():
     # button(root,"Quit",0.9,root.destroy)
 
     rootS.mainloop()
+# --------------------------------addBookPage---------------------------------------- #
 
-# searchPage()
+import numpy as np
+# --------------------------------addBookPage---------------------------------------- #
+def bookSelectPage():
+    """
+    generate book recomendation page
+    """
+    global bookIdEntry,genreEntry,titleEntry,authorEntry,purchasePriceEntry,purchaseDateEntry
+    rootS = Tk()
+    rootS.title("Show Recommended Books")   
+    rootS.geometry("750x700+400+50")  
+    rootS.resizable(0, 0)       
+    background(rootS,"Add Book")
+    
+    logList = [
+        ["1","1003", "Sci-fi", "Stars",  "author_1",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["2","1004", "Fantacy", "Aliens?",  "author_2",  "not available",  "1/8/2010" ,  "1/8/2010" ],
+        ["3","1003", "Math", "Simple Math",  "author_3",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["4","1003", "English", "Eng 101",  "author_4",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["5","1003", "Novel", "Witcher",  "author_1",  "not available",  "1/8/2010" ,  "1/8/2010" ],
+        ["10","1003", "Novel", "Witcher",  "author_1",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["100","1003", "Novel", "Witcher",  "author_1",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["9","1003", "Novel", "Witcher",  "author_1",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["88","1003", "Novel", "Witcher",  "author_1",  "available",  "1/8/2010" ,  "1/8/2010" ],
+        ["44","1009", "English", "Eng 101",  "author_4",  "not available",  "1/8/2010" ,  "1/8/2010" ],
+        ["99","1006", "Math", "Simple Math",  "author_3",  "not available",  "1/8/2010" ,  "1/8/2010" ],
+        ["93","1007", "Math", "Simple Math",  "author_3",  "available",  "1/8/2010" ,  "1/8/2010" ],
+    ]
+    # data['Social_Media_Popularity'] = (data['num_user_for_reviews']/
+    #                                data['num_voted_users'])*data['movie_facebook_likes']
+
+    # lets also check the Top 10 Most Popular Movies on Social Media
+    # x = logList.sort_values(by = 'ID', ascending = False).head(10).reset_index()
+    print(logList)
+    
+    # -------------- bar chart
+    # x = range(1,5)
+    # y = range(1,5)
+    # plt.bar(x, y, fill=True, hatch='/')
+    # plt.show()
+
+    # --------------- pie chart 
+
+    data = np.random.rand(5)
+    patches = plt.pie(data)
+    patches
+    hatches = ['o' if value==min(data) else 'O' if value==max(data) else '' for value in data]
+    patches = plt.pie(data)
+    for i in range(len(patches[0])):
+        patches[0][i].set(hatch = hatches[i], fill=False)
+    plt.show()
+
+    rootS.mainloop()
+# --------------------------------addBookPage---------------------------------------- #

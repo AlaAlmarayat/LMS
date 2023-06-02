@@ -1,7 +1,15 @@
 |     Book ID     |     Member ID     |     Genre     |     Title     |     Author     |   Loan Availability   |   Checkout Date   |   Return Date   |
-| 1               |                   | Fantacy       | Aliens        | ahmad          | available             |                   |                 |
-| 2               |                   | Math          | Simple Math   | Mazen          | available             |                   |                 |
-| 22              |                   | English       | English 101   | Subhi          | available             |                   |                 |
-| 23              |                   | English       | English 102   | Subhi          | available             |                   |                 |
-| 9               |                   | Novel         | Witcher       | jhon           | available             |                   |                 |
-| 10              |                   | Novel         | Witcher 2     | jhon           | available             |                   |                 |
+| 1               |                   | Fantacy       | Aliens        | ahmad          | not available         |                   |                 |
+| 2               |                   | Math          | Simple Math   | Mazen          | not available         |                   |                 |
+| 22              |                   | English       | English 101   | Subhi          | not available         |                   |                 |
+| 23              |                   | English       | English 102   | Subhi          | not available         |                   |                 |
+| 9               |                   | Novel         | Witcher       | jhon           | not available         |                   |                 |
+| 10              |                   | Novel         | Witcher 2     | jhon           | not available         |                   |                 |
+| 77              |                   | Sci-fi        | Travel back in time| Yammato        | not available         |                   |                 |
+| 23              |                   | 23            | 23            | 23             | not available         |                   |                 |
+| 33              |                   | CS            | python for beginners| Dr. Fawaz      | available             |                   |                 |
+| 55              |                   | test          | test          | test           | available             |                   |                 |
+| 66              |                   | testing       | testing       | testing        | not available         |                   |                 |
+| 54              |                   | Fantacy       | test          | test           | available             |                   |                 |
+| 145             |                   | CS            | CS            | Dr. Fawaz      | not available         |                   |                 |
+| 166             |                   | English       | advanced English| Tom            | not available         |                   |                 |

@@ -5,3 +5,10 @@
 | 23         | English       | English 102   | Subhi          | 35                     | 10/10/2006        |
 | 9          | Novel         | Witcher       | jhon           | 60                     | 11/5/2015         |
 | 10         | Novel         | Witcher 2     | jhon           | 70                     | 11/5/2015         |
+| 77         | Sci-fi        | Travel back in time| Yammato        | 40                     | 15/5/2023         |
+| 33         | CS            | python for beginners| Dr. Fawaz      | 10                     | 2/2/2022          |
+| 55         | test          | test          | test           | 33                     | 22/2/2022         |
+| 66         | testing       | testing       | testing        | 33                     | 2/2/2022          |
+| 54         | Fantacy       | test          | test           | 55                     | 5/5/2005          |
+| 145        | CS            | CS            | Dr. Fawaz      | 44                     | 4/4/2014          |
+| 166        | English       | advanced English| Tom            | 45                     | 4/4/2019          |
