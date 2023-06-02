@@ -252,7 +252,7 @@ def returnBookPage():
     memberEntry.place(relx=0.3,rely=0.4, relwidth=0.62, relheight=0.1)
       
       #Submit Button
-    SubmitBtn = Button(rootS,text="Checkout",bg='alice blue', fg='black',command=onClickRetunBook)
+    SubmitBtn = Button(rootS,text="Return",bg='alice blue', fg='black',command=onClickRetunBook)
     SubmitBtn.place(relx=0.28,rely=0.8, relwidth=0.18,relheight=0.08)
     
     quitBtn = Button(rootS,text="Quit",bg='alice blue', fg='black', command=rootS.destroy)
@@ -382,7 +382,7 @@ def onClickAddBook():
     booksList = [[bookIdEntry,genreEntry,titleEntry,authorEntry,purchasePriceEntry,purchaseDateEntry]]
     logList = [[bookIdEntry,"", genreEntry, titleEntry,  authorEntry,  "available",  "" ,  "" ]]
 
-    bookIDExist =insert(bookInfoFilePath ,booksList, booksTableHeader,"Books")
+    bookIDExist = insert(bookInfoFilePath ,booksList, booksTableHeader,"Books")
     insert(logFilePath ,logList, logTableHeader,"Logs")
 
     if bookIDExist !="":
@@ -390,6 +390,7 @@ def onClickAddBook():
     else: 
         rootS.destroy 
         messagebox.showinfo('Success',"Book added successfully!")   
+    
          
 # --------------------------------addBook---------------------------------------- #
 

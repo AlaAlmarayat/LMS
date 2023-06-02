@@ -1,17 +1,24 @@
 |     ID     |     Genre     |     Title     |     Author     |   Purchase Price JOD   |   Purchase Date   |
 | 1          | Fantacy       | Aliens        | ahmad          | 20                     | 1/2/2002          |
-| 2          | Math          | Simple Math   | Mazen          | 44                     | 22/1/2000         |
+| 2          | Math          | Simple Math   | Mazen          | 44                     | 3/3/2003          |
 | 22         | English       | English 101   | Subhi          | 20                     | 3/3/2003          |
 | 23         | English       | English 102   | Subhi          | 35                     | 10/10/2006        |
 | 9          | Novel         | Witcher       | jhon           | 60                     | 11/5/2015         |
-| 10         | Novel         | Witcher 2     | jhon           | 70                     | 11/5/2015         |
+| 10         | Novel         | Witcher 2     | jhon           | 70                     | 1/5/2018          |
 | 77         | Sci-fi        | Travel back in time| Yammato        | 40                     | 15/5/2023         |
 | 33         | CS            | python for beginners| Dr. Fawaz      | 10                     | 2/2/2022          |
-| 55         | test          | test          | test           | 33                     | 22/2/2022         |
-| 66         | testing       | testing       | testing        | 33                     | 2/2/2022          |
-| 54         | Fantacy       | test          | test           | 55                     | 5/5/2005          |
-| 145        | CS            | CS            | Dr. Fawaz      | 44                     | 4/4/2014          |
+| 55         | Novel         | beloved       | Scott          | 33                     | 22/2/1999         |
+| 66         | Action        | once upon a time in Amman| Khaled         | 22                     | 2/2/2022          |
+| 145        | CS            | Advanced Java | Dr. Fawaz      | 44                     | 4/4/2014          |
 | 166        | English       | advanced English| Tom            | 45                     | 4/4/2019          |
-| 11         | 11            | 11            | 11             | 11                     | 11                |
+| 11         | Action        | Jhon Wick     | Jhon           | 50                     | 2/2/2020          |
 | 545        | Sci-Fi        | travel back in time | Marty          | 44                     | 2/2/2020          |
 | 444        | Novel         | paradox       | hamza          | 33                     | 11/11/2011        |
+| 666        | Fantacy       | the wizard    | Heba           | 44                     | 11/11/2011        |
+| 777        | Fantacy       | Nors Meth     | Rand           | 22                     | 11/5/2015         |
+| 888        | Math          | calculus      | Dr. Ahmad      | 15                     | 1/4/2022          |
+| 999        | Fantacy       | Lord if the rings| tala           | 44                     | 24/4/2000         |
+| 123        | Novel         | Dark ages     | Sali           | 33                     | 3/2/2004          |
+| 222        | Sci-Fi        | Space         | Heba           | 34                     | 2/2/2020          |
+| 333        | Action        | war           | Basem          | 86                     | 2/2/2020          |
+| 555        | Math          | Math Advanced | Dr. Fadi       | 34                     | 10/10/2006        |

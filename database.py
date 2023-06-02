@@ -83,53 +83,61 @@ def update(ID,memberId, dateToUpdate,newStatus):
     with open(logFilePath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
-        status = 0
+        lineNumber = 0
         
         # newvalues = [[]]
         templist = []
+        headerList = []
+
         with open(logFilePath, 'w') as fw:
+            
             for line in lines:
                 # line.lower()
                 # check if string present on a current line
-                id = line[0:20]
-                if id.find(ID) != -1 and line.index != 0:
-                    # templine = line
-                    # line = line. strip('\n')
+                if lineNumber == 0:
+                    # line = line.strip()            
+                    headerList  = line.split("|") 
+                    headerList.pop(0)
+                    headerList.pop(len(templist)-1) 
+                    lineNumber += 1
+                    fw.write(line)
+                else:
+                    templist2  = line.split("|")
+                    id = str(templist2[1]).replace(" ","")
+                    fileId = int(id  )
+                    ID = int(ID)
+                    if fileId == ID and line.index != 0:
 
-                    line = line.strip()
-                    # line = line.replace(" ","")            
-                    templist  = line.split("|")    
-                    templist[2] = memberId 
-                    templist[6] = newStatus 
-                    currentDate = str(datetime.today().strftime('%d/%m/%Y'))
-                    currentDate = " " + currentDate + " "*len(currentDate)
-                    templist[dateToUpdate] = currentDate 
+                        # line = line.strip()
+                        # line = line.replace(" ","")            
+                        templist  = line.split("|")    
+                        templist[2] = memberId 
+                        templist[6] = newStatus 
+                        currentDate = str(datetime.today().strftime('%d/%m/%Y'))
+                        # currentDate = " " + currentDate + " "*len(currentDate)
+                        templist[dateToUpdate] = currentDate 
 
-                    templist.pop(0)
-                    templist.pop(len(templist)-1) 
+                        templist.pop(0)
+                        templist.pop(len(templist)-1) 
 
-                    # newvalues.append(newvalues)
-                    
-                    numCol = len(templist)
+                        # newvalues.append(newvalues)
+                        
+                        numCol = len(headerList)
 
-                    # for item in templist:
-                    # # writing each row to a string,
-                    # # then printing the string, is better for performance:)
-                    
-                    s = "|"
-                    for i in range(numCol):
-                        entry = str(templist[i])
+                        # for item in templist:
+                        # # writing each row to a string,
+                        # # then printing the string, is better for performance:)
+                        
+                        s = "|"
+                        for i in range(numCol):
+                            entry = str(templist[i])
 
-                        listLen = len(templist[i])
-                        if listLen == 0:
-                            listLen = 10
-                        s += (entry+ " "*(listLen - len(entry)-2)+ "|")
+                            s += (entry+ " "*(len(headerList[i]) - len(entry)+1)+ "|")
 
-                    fw.write(s)
-                    fw.write('\n')
-                else: 
-                   fw.write(line)
-                #    fw.write('\n')
+                        fw.write(s)
+                        fw.write('\n')
+                    else: 
+                        fw.write(line)
                 
 
     return loanAvilabilityStatus  

@@ -14,6 +14,6 @@ def returnBook(bookID,memberID,newStatus):
     newStatus as an 3rd argument (sting)\n
     return status Loan Avilability Status
     """
-    update(bookID,bookID,8,newStatus)
+    update(bookID,memberID,8,newStatus)
     
 # --------------------------------searchMemberID---------------------------------------- #    

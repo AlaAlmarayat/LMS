@@ -41,11 +41,17 @@ def getBookStatusByID(ID):
         resultList = []
         
        
-        for line in lines:
+        for line in lines[1:]:
             # line.lower()
             # check if string present on a current line
-            id = line[0:14]
-            if id.find(ID) != -1 and line.index != 0:
+            # id = line[0:14]
+            templist2  = line.split("|")
+            id = str(templist2[1]).replace(" ","")
+            fileId = int(id  )
+            ID = int(ID)
+
+            if fileId == ID and line.index != 0:
+            # if id.find(ID) != -1 and line.index != 0:
                 line = line.replace(" ","")
                 resultList  = line.split("|")
                 loanAvilabilityStatus= resultList[6]
@@ -156,19 +162,31 @@ def searchID(filepath,ID):
         global status
         status = 0
         searchResult = []
+        lineNumber = 0
 
         for line in lines:
-            # line.lower()
-            # check if string present on a current line
-            line = line[0:20]
-            if line.find(ID) != -1:
-                # print(id, 'string exists in file')
-                # print('Line Number:', lines.index(line))
-                # print('Line:', line)
-                status = 1
-                searchResult=line.split("|")
-                break
-                # break
+            templist = []
+
+            if lineNumber == 0:  
+                id = line[0:20]
+                if id.find(ID) != -1 and line.index != 0:
+                    status = 1
+                    searchResult=line.split("|")
+                    break 
+            else:
+                templist  = line.split("|")
+                id = str(templist[1]).replace(" ","")
+                fileId = int(id  )
+                ID = int(ID)
+
+                if fileId == ID and line.index != 0:
+                    # print(id, 'string exists in file')
+                    # print('Line Number:', lines.index(line))
+                    # print('Line:', line)
+                    status = 1
+                    searchResult=line.split("|")
+                    break
+                    # break
 
     return searchResult
 # --------------------------------searchID---------------------------------------- #
@@ -191,11 +209,17 @@ def getBookByID(filePath,ID):
         # read all lines in a list
         lines = fp.readlines() 
 
-        for line in lines:
+        for line in lines[1:]:
             # line.lower()
             # check if string present on a current line
-            id = line[0:14]
-            if id.find(ID) != -1 and line.index != 0:
+            # id = line[0:14]
+            templist2  = line.split("|")
+            id = str(templist2[1]).replace(" ","")
+            fileId = int(id  )
+            ID = int(ID)
+
+            if fileId == ID and line.index != 0:
+            # if id.find(ID) != -1 and line.index != 0:
                 # templine = line
                 # line = line. strip('\n')
                 searchResult=line.split("|")
