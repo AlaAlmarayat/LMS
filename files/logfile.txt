@@ -5,7 +5,7 @@
 | 23              |                   | English       | English 102   | Subhi          | not available         |                   |                 |
 | 9               |                   | Novel         | Witcher       | jhon           | not available         |                   |                 |
 | 10              |                   | Novel         | Witcher 2     | jhon           | not available         |                   |                 |
-| 77              |                   | Sci-fi        | Travel back in time| Yammato        | available             |                   |                 |
+| 77              |77| Sci-fi        | Travel back in time| Yammato        |available    | 02/06/2023          | 02/06/2023          |
 | 23              |                   | 23            | 23            | 23             | not available         |                   |                 |
 | 33              |                   | CS            | python for beginners| Dr. Fawaz      | available             |                   |                 |
 | 55              |                   | test          | test          | test           | available             |                   |                 |
@@ -14,4 +14,5 @@
 | 145             |                   | CS            | CS            | Dr. Fawaz      | available             |                   |                 |
 | 166             |                   | English       | advanced English| Tom            | not available         |                   |                 |
 | 11              |                   | 11            | 11            | 11             | available             |                   |                 |
-| 545             |                   | Sci-Fi        | travel back in time | Marty          | available             |                   |                 |
+| 545             |5452| Sci-Fi        | travel back in time | Marty          |not available| 02/06/2023          | 02/06/2023          |
+|  444               |1003|  Novel           |  paradox         |  hamza            |not available|02/06/2023          |02/06/2023 |

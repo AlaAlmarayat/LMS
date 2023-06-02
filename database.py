@@ -2,7 +2,7 @@ from modules.bookSearch import *
 from tkinter import *
 from PIL import ImageTk,Image
 from tkinter import messagebox 
-
+from datetime import datetime
 
 bookInfoFilePath ='.\\files\\Book_Info.txt'
 membersFilePath='.\\files\\Members.txt'
@@ -69,7 +69,7 @@ def insert(filePath,listItems, listTableHeader,type):
 # --------------------------------insert---------------------------------------- #
 
 # --------------------------------update---------------------------------------- #
-def update(ID,oldStatus,newStatus):
+def update(ID,memberId, dateToUpdate,newStatus):
     """
     update book log by ID\n
     Book ID as an 1st argument (int)\n
@@ -85,7 +85,8 @@ def update(ID,oldStatus,newStatus):
         lines = fp.readlines()
         status = 0
         
-        
+        # newvalues = [[]]
+        templist = []
         with open(logFilePath, 'w') as fw:
             for line in lines:
                 # line.lower()
@@ -94,8 +95,38 @@ def update(ID,oldStatus,newStatus):
                 if id.find(ID) != -1 and line.index != 0:
                     # templine = line
                     # line = line. strip('\n')
-                    fw.write(line.replace(oldStatus,newStatus))
-                    # fw.write('\n')
+
+                    line = line.strip()
+                    # line = line.replace(" ","")            
+                    templist  = line.split("|")    
+                    templist[2] = memberId 
+                    templist[6] = newStatus 
+                    currentDate = str(datetime.today().strftime('%d/%m/%Y'))
+                    currentDate = " " + currentDate + " "*len(currentDate)
+                    templist[dateToUpdate] = currentDate 
+
+                    templist.pop(0)
+                    templist.pop(len(templist)-1) 
+
+                    # newvalues.append(newvalues)
+                    
+                    numCol = len(templist)
+
+                    # for item in templist:
+                    # # writing each row to a string,
+                    # # then printing the string, is better for performance:)
+                    
+                    s = "|"
+                    for i in range(numCol):
+                        entry = str(templist[i])
+
+                        listLen = len(templist[i])
+                        if listLen == 0:
+                            listLen = 10
+                        s += (entry+ " "*(listLen - len(entry)-2)+ "|")
+
+                    fw.write(s)
+                    fw.write('\n')
                 else: 
                    fw.write(line)
                 #    fw.write('\n')

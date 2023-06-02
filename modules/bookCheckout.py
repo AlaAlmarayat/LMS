@@ -6,7 +6,7 @@ from database import *
 
 
 # --------------------------------searchMemberID---------------------------------------- #
-def bookCheckOut(id,oldStatus,newStatus):
+def bookCheckOut(bookID,memberID,newStatus):
     """
     update book log by ID\n
     Book ID as an 1st argument (int)\n
@@ -14,6 +14,7 @@ def bookCheckOut(id,oldStatus,newStatus):
     newStatus as an 3rd argument (sting)\n
     return status Loan Avilability Status
     """
-    update(id,oldStatus,newStatus)
+    
+    update(bookID,memberID, 7,newStatus)
     
 # --------------------------------searchMemberID---------------------------------------- #    

@@ -53,16 +53,26 @@ def background(root,title):
 # --------------------------------background---------------------------------------- #
 
 # --------------------------------button---------------------------------------- #        
-def button(root,buttonText,rely,command):
+def bigButton(root,buttonText,command,relx,rely,relwidth,relheight):
     """
     resuable GUI button 
     """
-    btn1 = Button(root,text=buttonText,bg='alice blue', fg='black' ,command=command)
-    btn1.place(relx=0.28,rely=rely, relwidth=0.45,relheight=0.1)
+    btn = Button(root,text=buttonText,bg='alice blue', fg='black' ,command=command)
+    btn.place(relx=relx,rely=rely, relwidth=relwidth,relheight=relheight)
+# --------------------------------button---------------------------------------- #
+
+
+# --------------------------------button---------------------------------------- #        
+def smallButton(rootS,buttonText,width,command,x,y):
+    """
+    resuable GUI button 
+    """
+    btn = Button(rootS, text = buttonText,  width = width, font=('calibri', 12, 'normal'),command=command)
+    btn.place(x = x, y = y)
 # --------------------------------button---------------------------------------- #
 
 # --------------------------------emptyView---------------------------------------- #
-def emptyView(rootS): 
+def tableView(rootS): 
     """
     resuable GUI table 
     """   
@@ -112,11 +122,12 @@ def mainPage():
     
     background(root,"Library Management System")
 
-    button(root,"Book Search",0.4,searchPage)
-    button(root,"Book Checkout",0.5,bookCheckoutPage)
-    button(root,"Book Return",0.6,returnBookPage)
-    button(root,"Book Select",0.7,bookSelectPage)
-    button(root,"Add Book",0.8,addBookPage)
+    bigButton(root,"Book Search",searchPage ,0.28 ,0.4 ,0.45 ,0.1)
+    bigButton(root,"Book Checkout",bookCheckoutPage ,0.28 ,0.5 ,0.45 ,0.1)
+    bigButton(root,"Book Return",returnBookPage ,0.28 ,0.6 ,0.45 ,0.1)
+    bigButton(root,"Book Select",bookSelectPage ,0.28 ,0.7 ,0.45 ,0.1)
+    bigButton(root,"Add Book",addBookPage ,0.28 ,0.8 ,0.45 ,0.1)
+
     root.mainloop()
 # --------------------------------mainPage---------------------------------------- #
 
@@ -136,8 +147,8 @@ def onClickShowData():
         logList = searchTitleLog(searchString) 
         
     print(logList)
-    for f in logList:
-        treeview.insert("", END, values=f)
+    for value in logList:
+        treeview.insert("", END, values=value)
 # --------------------------------showData---------------------------------------- #
 
 # --------------------------------clear_all---------------------------------------- #
@@ -165,26 +176,16 @@ def searchPage():
     rootS.resizable(0, 0)       
     
     # treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22) 
-    emptyView(rootS)     
+    tableView(rootS)     
 
     searchLabel = Label(rootS, text = "Book Title", font=('calibri', 12, 'normal'))
     searchLabel.place(x = 190, y = 518)
     searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
     searchEntry.place(x = 100, y = 540)
 
-    # searchString = str(ws_ent.get)
-    # print(ws_ent.get)
-    
-    ws_btn1 = Button(rootS, text = 'Search',  width = 8, font=('calibri', 12, 'normal'),command=onClickShowData)
-    ws_btn1.place(x = 350, y = 540)
-    ws_btn2 = Button(rootS, text = 'Reset',  width = 8, font=('calibri', 12, 'normal',),command=onClickReset)
-    ws_btn2.place(x = 450, y = 540)
-    ws_btn3 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal'), command=rootS.destroy)
-    ws_btn3.place(x = 550, y = 540)
-    
-
-    
-    # button(root,"Quit",0.9,root.destroy)
+    smallButton(rootS,"Search",8 ,onClickShowData ,350 , 540)
+    smallButton(rootS,"Reset",8 ,onClickReset ,450 , 540)
+    smallButton(rootS,"Exit",8 ,rootS.destroy,550 , 540)
 
     rootS.mainloop()
 # --------------------------------searchPage---------------------------------------- #
@@ -194,11 +195,13 @@ def onClickRetunBook():
     """
     return a book and update the database
     """
-    global searchEntry
+    global searchEntry, memberEntry
     returnAuth =""
     # print(ws_ent.get())
-    id = str(searchEntry.get())
-    result = getBookStatusByID(id)
+    bookId = str(searchEntry.get())
+    memberId = str(memberEntry.get())
+
+    result = getBookStatusByID(bookId)
     
     # result 0 means no data found 
     # result 1 means a book/s was found  
@@ -212,8 +215,8 @@ def onClickRetunBook():
        returnAuth = messagebox.askquestion('Success',"Book Exists and ready to be returned!\n Are you sure you want to do this?")
     
     if returnAuth == "yes":
-        returnBook(id,"not available","available    ")
-        addTransactionHistoryRecord (id)
+        returnBook(bookId,memberId,"available    ")
+        addTransactionHistoryRecord (bookId)
 # --------------------------------retunBook---------------------------------------- #
 
 # --------------------------------returnBookPage---------------------------------------- # 
@@ -221,7 +224,7 @@ def returnBookPage():
     """
     generate return book page
     """
-    global searchEntry
+    global searchEntry,memberEntry
     rootS = Tk()
     rootS.title("Book Search")   
     rootS.geometry("750x700+400+50")  
@@ -229,17 +232,45 @@ def returnBookPage():
     background(rootS,"Return a Book")
 
 
-    ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
-    ws_lbl.place(x = 190, y = 310)
-    searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
-    searchEntry.place(x = 100, y = 340)
-    # searchString = str(ws_ent.get)
+
+    
+    labelFrame = Frame(rootS,bg='alice blue')
+    labelFrame.place(relx=0.1,rely=0.4,relwidth=0.8,relheight=0.3)
+
+     # search Entry ID
+    bookIdLabel = Label(labelFrame,text="Book ID : ", bg='alice blue', fg='black')
+    bookIdLabel.place(relx=0.05,rely=0.2, relheight=0.1)
+        
+    searchEntry = Entry(labelFrame)
+    searchEntry.place(relx=0.3,rely=0.2, relwidth=0.62, relheight=0.1)
+        
+    # Genre
+    memberLabel = Label(labelFrame,text="Member ID : ", bg='alice blue', fg='black')
+    memberLabel.place(relx=0.05,rely=0.4, relheight=0.1)
+
+    memberEntry = Entry(labelFrame)
+    memberEntry.place(relx=0.3,rely=0.4, relwidth=0.62, relheight=0.1)
+      
+      #Submit Button
+    SubmitBtn = Button(rootS,text="Checkout",bg='alice blue', fg='black',command=onClickRetunBook)
+    SubmitBtn.place(relx=0.28,rely=0.8, relwidth=0.18,relheight=0.08)
+    
+    quitBtn = Button(rootS,text="Quit",bg='alice blue', fg='black', command=rootS.destroy)
+    quitBtn.place(relx=0.53,rely=0.8, relwidth=0.18,relheight=0.08)
+
+        
+
+    # ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
+    # ws_lbl.place(x = 190, y = 310)
+    # searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
+    # searchEntry.place(x = 100, y = 340)
+    # # searchString = str(ws_ent.get)
     
 
-    ws_btn1 = Button(rootS, text = 'Return',  width = 8, font=('calibri', 12, 'normal'),command=onClickRetunBook)
-    ws_btn1.place(x = 400, y = 340)    
-    ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
-    ws_btn2.place(x = 500, y = 340) 
+    # ws_btn1 = Button(rootS, text = 'Return',  width = 8, font=('calibri', 12, 'normal'),command=onClickRetunBook)
+    # ws_btn1.place(x = 400, y = 340)    
+    # ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
+    # ws_btn2.place(x = 500, y = 340) 
     
 
     
@@ -253,11 +284,13 @@ def onClickBookCheckout():
     """
     checkout a book and update the database
     """
-    global searchEntry
+    global searchEntry, memberEntry
     returnAuth =""
     # print(ws_ent.get())
-    id = str(searchEntry.get())
-    result = getBookStatusByID(id)
+    bookId = str(searchEntry.get())
+    memberId = str(memberEntry.get())
+
+    result = getBookStatusByID(bookId)
     
     # result 0 means no data found 
     # result 1 means a book/s was found  
@@ -271,8 +304,8 @@ def onClickBookCheckout():
        messagebox.showerror('Error',"Book exists and not available!\n Cannot be checked out")
     
     if returnAuth == "yes":
-       bookCheckOut(id,"available    ","not available")
-       addTransactionHistoryRecord (id)
+       bookCheckOut(bookId,memberId,"not available")
+       addTransactionHistoryRecord (bookId)
 # --------------------------------bookCheckout---------------------------------------- #
 
 # --------------------------------bookCheckoutPage---------------------------------------- # 
@@ -280,7 +313,7 @@ def bookCheckoutPage():
     """
     generate book checkout page
     """
-    global searchEntry
+    global searchEntry,memberEntry
     rootS = Tk()
     rootS.title("Book Checkout")   
     rootS.geometry("750x700+400+50")  
@@ -288,17 +321,44 @@ def bookCheckoutPage():
     background(rootS,"Book Checkout")
 
 
-    ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
-    ws_lbl.place(x = 190, y = 310)
-    searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
-    searchEntry.place(x = 100, y = 340)
+
+    labelFrame = Frame(rootS,bg='alice blue')
+    labelFrame.place(relx=0.1,rely=0.4,relwidth=0.8,relheight=0.3)
+
+     # search Entry ID
+    bookIdLabel = Label(labelFrame,text="Book ID : ", bg='alice blue', fg='black')
+    bookIdLabel.place(relx=0.05,rely=0.2, relheight=0.1)
+        
+    searchEntry = Entry(labelFrame)
+    searchEntry.place(relx=0.3,rely=0.2, relwidth=0.62, relheight=0.1)
+        
+    # Genre
+    memberLabel = Label(labelFrame,text="Member ID : ", bg='alice blue', fg='black')
+    memberLabel.place(relx=0.05,rely=0.4, relheight=0.1)
+
+    memberEntry = Entry(labelFrame)
+    memberEntry.place(relx=0.3,rely=0.4, relwidth=0.62, relheight=0.1)
+      
+      #Submit Button
+    SubmitBtn = Button(rootS,text="Checkout",bg='alice blue', fg='black',command=onClickBookCheckout)
+    SubmitBtn.place(relx=0.28,rely=0.8, relwidth=0.18,relheight=0.08)
+    
+    quitBtn = Button(rootS,text="Quit",bg='alice blue', fg='black', command=rootS.destroy)
+    quitBtn.place(relx=0.53,rely=0.8, relwidth=0.18,relheight=0.08)
+
+        
+
+    # ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
+    # ws_lbl.place(x = 190, y = 310)
+    # searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
+    # searchEntry.place(x = 100, y = 340)
     # searchString = str(ws_ent.get)
     
 
-    ws_btn1 = Button(rootS, text = 'Checkout',  width = 8, font=('calibri', 12, 'normal'),command=onClickBookCheckout)
-    ws_btn1.place(x = 400, y = 340)    
-    ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
-    ws_btn2.place(x = 500, y = 340) 
+    # ws_btn1 = Button(rootS, text = 'Checkout',  width = 8, font=('calibri', 12, 'normal'),command=onClickBookCheckout)
+    # ws_btn1.place(x = 400, y = 340)    
+    # ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
+    # ws_btn2.place(x = 500, y = 340) 
 # --------------------------------bookCheckoutPage---------------------------------------- #
 
 # --------------------------------addBook---------------------------------------- #
