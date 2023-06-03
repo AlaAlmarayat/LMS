@@ -8,11 +8,7 @@ run below command to install tkinter
 
 
 - [Summary](#summary)
-- [Lab Manual](#lab-manual)
-- [Usage](#usage)
-	- [java](#java)
-	- [docker](#docker)
-	- [docker-compose](#docker-compose)
+- [Run program](#run-program)
 
 # Summary
 Simple Library managment system using Pyhon as a programming language.
