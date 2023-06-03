@@ -23,7 +23,11 @@ def addTransactionHistoryRecord (ID):
     insert(bookTransactionHistoryFilePath ,transactionHistory, transactionHistoryTableHeader,"History") 
 
 def selectTopGenres(logFilePath):
-    return getTopGenres(logFilePath)     
+    return getTop(logFilePath,3)     
+
+def selectTopBooks(logFilePath):
+    return getTop(logFilePath,4)     
+
 
 # --------------------------------searchLogID---------------------------------------- #
 def getBookStatusByID(ID):    
@@ -371,7 +375,7 @@ def update(ID,memberId, dateToUpdate,newStatus):
 # --------------------------------update---------------------------------------- #
 
 # --------------------------------searchLogID---------------------------------------- #
-def getTopGenres(logFilePath):    
+def getTop(logFilePath,type):    
     """
     search log by ID and get avilability status\n
     Book ID as an argument (int)\n
@@ -390,10 +394,10 @@ def getTopGenres(logFilePath):
             line = line.strip()
             line = line.replace(" ","")            
             templist  = line.split("|")            
-            genre = templist[3]
+            topTopic = templist[type]
             # Convert the characters in line to
             # lowercase to avoid case mismatch
-            line = genre.lower()
+            line = topTopic.lower()
         
             # Split the line into words
             words = line.split(" ")
@@ -411,3 +415,81 @@ def getTopGenres(logFilePath):
 
     return genreDictionary  
 # --------------------------------searchLogID---------------------------------------- #
+
+
+
+# --------------------------------searchLogID---------------------------------------- #
+def getAveragePrice(logFilePath,bookInfoFilePath,budget):    
+    """
+    search log by ID and get avilability status\n
+    Book ID as an argument (int)\n
+    return status 0 if not exist | 1 if exist 
+    """
+    
+    topGenreDictionarySorted = dict()
+    topGenrePrices = dict()
+    tempDictionary = dict()
+    
+
+    # sort the dictonary 
+    tempDictionary = getTop(logFilePath,3)     
+    sortedList = sorted(tempDictionary.items(), key=lambda item: item[1], reverse=True)  
+
+    topGenreDictionarySorted = {key: value for key, value in sortedList}
+
+    with open(bookInfoFilePath, 'r') as fp:
+        
+        text = fp.readlines()
+        # Create an empty dictionary
+        # genreDictionary = dict()
+        
+        
+        # Loop through each line of the file
+        for line in text[1:]:
+            # Remove the leading spaces and newline character
+            line = line.strip()
+            line = line.replace(" ","")            
+            templist  = line.split("|")            
+            topTopic = templist[2]
+            price = int(templist[5])
+
+            # Convert the characters in line to
+            # lowercase to avoid case mismatch
+            line = topTopic.lower()
+        
+            # Split the line into words
+            genres = line.split(" ")
+        
+            # Iterate over each word in line
+            for genre in genres:
+                # Check if the word is already in dictionary
+                if genre in topGenrePrices:
+                    # Increment count of word by 1
+                    topGenrePrices[genre] = topGenrePrices[genre] + price
+                else:
+                    # Add the word to dictionary with count 1
+                    topGenrePrices[genre] = price
+        
+        resultList =[]
+        # tempList =[4]
+        for genreInCount in topGenreDictionarySorted:
+            
+            for genreInPrice in topGenrePrices:
+                if genreInCount == genreInPrice:
+                   title =  genreInCount
+                   count =  topGenreDictionarySorted[genreInCount]
+                   averagePrice =  round(topGenrePrices[genreInPrice] / topGenreDictionarySorted[genreInCount])
+                   recommededCopies = round( budget/ (topGenrePrices[genreInPrice] / topGenreDictionarySorted[genreInCount]))
+                   tempList = [ title, count, averagePrice, recommededCopies]
+
+                   resultList.append(tempList)
+            
+               
+        print(resultList)
+
+
+    return resultList  
+# --------------------------------searchLogID---------------------------------------- #
+
+
+

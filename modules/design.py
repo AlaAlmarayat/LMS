@@ -62,7 +62,7 @@ def smallButton(rootS,buttonText,width,command,x,y):
 # --------------------------------button---------------------------------------- #
 
 # --------------------------------emptyView---------------------------------------- #
-def tableView(rootS): 
+def tableView(rootS,column2,colum3,column4): 
     """
     resuable GUI table 
     """   
@@ -70,20 +70,20 @@ def tableView(rootS):
     global treeview
     scrollbarx = Scrollbar(rootS, orient=HORIZONTAL)  
     scrollbary = Scrollbar(rootS, orient=VERTICAL)    
-    treeview = ttk.Treeview(rootS, columns=("Grene", "Title", "Author", "Loan Availabilty"), show='headings', height=22)  
+    treeview = ttk.Treeview(rootS, columns=("Grene", column2, colum3, column4), show='headings', height=22)  
     
 
     treeview.pack()
     treeview.heading('Grene', text="Grene", anchor=CENTER)
     treeview.column("Grene", stretch=NO, width = 100) 
-    treeview.heading('Title', text="Title", anchor=CENTER)
-    treeview.column("Title", stretch=NO)
-    treeview.heading('Author', text="Author", anchor=CENTER)
-    treeview.column("Author", stretch=NO)
-    treeview.heading('Loan Availabilty', text="Loan Availabilty", anchor=CENTER)
-    treeview.column("Loan Availabilty", stretch=NO)
+    treeview.heading(column2, text=column2, anchor=CENTER)
+    treeview.column(column2, stretch=NO)
+    treeview.heading(colum3, text=colum3, anchor=CENTER)
+    treeview.column(colum3, stretch=NO)
+    treeview.heading(column4, text=column4, anchor=CENTER)
+    treeview.column(column4, stretch=NO)
     
-    # listData = treeview 
+    # listData = treeview "Loan Availabilty"
 
     scrollbary.config(command=treeview.yview)
     scrollbary.place(x = 526, y = 7)

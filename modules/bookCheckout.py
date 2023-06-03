@@ -71,18 +71,4 @@ def bookCheckoutPage():
     
     quitBtn = Button(rootS,text="Quit",bg='alice blue', fg='black', command=rootS.destroy)
     quitBtn.place(relx=0.53,rely=0.8, relwidth=0.18,relheight=0.08)
-
-    
-    
-    # ws_lbl = Label(rootS, text = "Book ID", font=('calibri', 12, 'normal'))
-    # ws_lbl.place(x = 190, y = 310)
-    # searchEntry = Entry(rootS,  width = 20, font=('Arial', 15, 'bold'))
-    # searchEntry.place(x = 100, y = 340)
-    # searchString = str(ws_ent.get)
-    
-
-    # ws_btn1 = Button(rootS, text = 'Checkout',  width = 8, font=('calibri', 12, 'normal'),command=onClickBookCheckout)
-    # ws_btn1.place(x = 400, y = 340)    
-    # ws_btn2 = Button(rootS, text = 'Exit',  width = 8, font=('calibri', 12, 'normal',),command=rootS.destroy)
-    # ws_btn2.place(x = 500, y = 340) 
 # --------------------------------bookCheckoutPage---------------------------------------- #

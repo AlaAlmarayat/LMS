@@ -59,7 +59,7 @@ def searchPage():
     rootS.resizable(0, 0)       
     
     # treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22) 
-    treeview = tableView(rootS)     
+    treeview = tableView(rootS,"Title", "Author", "Loan Availabilty")     
 
     searchLabel = Label(rootS, text = "Book Title", font=('calibri', 12, 'normal'))
     searchLabel.place(x = 190, y = 518)
