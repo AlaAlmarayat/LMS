@@ -1,4 +1,3 @@
-# from modules.bookSearch import * 
 from tkinter import * 
 from datetime import datetime
 
@@ -28,15 +27,13 @@ def selectTopGenres(logFilePath):
 def selectTopBooks(logFilePath):
     return getTop(logFilePath,4)     
 
-
 # --------------------------------searchLogID---------------------------------------- #
 def getBookStatusByID(ID):    
     """
     search log by ID and get avilability status\n
     Book ID as an argument (int)\n
     return status 0 if not exist | 1 if exist 
-    """
-    # title.lower()
+    """ 
     loanAvilabilityStatus = ""
     with open(logFilePath, 'r') as fp:
         # read all lines in a list
@@ -46,16 +43,12 @@ def getBookStatusByID(ID):
         
        
         for line in lines[1:]:
-            # line.lower()
-            # check if string present on a current line
-            # id = line[0:14]
             templist  = line.split("|")
             id = str(templist[1]).replace(" ","")
             fileId = int(id  )
             ID = int(ID)
 
             if fileId == ID and line.index != 0:
-            # if id.find(ID) != -1 and line.index != 0:
                 line = line.replace(" ","")
                 resultList  = line.split("|")
                 loanAvilabilityStatus= resultList[6]
@@ -70,8 +63,7 @@ def searchTitleLog(title):
     search book log by title\n
     title as an 1st argument (string)\n
     return list of books
-    """
-    # title.lower()
+    """ 
     with open(logFilePath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
@@ -79,16 +71,11 @@ def searchTitleLog(title):
         templist = []
         resultList = []
 
-        for line in lines[1:]:
-            # line.lower()
-            # check if string present on a current line
+        for line in lines[1:]: 
             templist2  = line.split("|")
             lineTitle = str(templist2[4]).replace(" ","").lower()
             fileTitle = title.lower()
-            # ID = int(ID)
-
-            # if fileId == ID and line.index != 0:
-                
+                            
             if lineTitle.find(fileTitle) != -1 and lines.index != 0:
                 line = line.replace(" ","")
                 templist  = line.split("|")
@@ -142,19 +129,15 @@ def searchTitle(title):
     search book by title\n
     title as an 1st argument (string)\n
     return list of books
-    """
-    # title.lower()
+    """ 
     with open(bookInfoFilePath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
         status = 0
-        for line in lines:
-            # line.lower()
-            # check if string present on a current line
+        for line in lines: 
             if line.find(title) != -1:
                 print( line)
-                status = 1
-                # break
+                status = 1 
         if status == 0: 
            print('No Results Found')
 # --------------------------------returnAllTitleLog---------------------------------------- #
@@ -165,8 +148,7 @@ def searchID(filepath,ID):
     search by ID\n
     Book ID as an 1st argument (int)\n
     return list of books
-    """
-    # title.lower()
+    """ 
     with open(filepath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
@@ -191,13 +173,9 @@ def searchID(filepath,ID):
                 ID = int(ID)
 
                 if fileId == ID and line.index != 0:
-                    # print(id, 'string exists in file')
-                    # print('Line Number:', lines.index(line))
-                    # print('Line:', line)
                     status = 1
                     searchResult=line.split("|")
-                    break
-                    # break
+                    break 
 
     return searchResult
 # --------------------------------searchID---------------------------------------- #
@@ -221,20 +199,13 @@ def getBookByID(filePath,ID):
         lines = fp.readlines() 
 
         for line in lines[1:]:
-            # line.lower()
-            # check if string present on a current line
-            # id = line[0:14]
             templist2  = line.split("|")
             id = str(templist2[1]).replace(" ","")
             fileId = int(id  )
             ID = int(ID)
 
-            if fileId == ID and line.index != 0:
-            # if id.find(ID) != -1 and line.index != 0:
-                # templine = line
-                # line = line. strip('\n')
-                searchResult=line.split("|")
-                # fw.write('\n') 
+            if fileId == ID and line.index != 0: 
+                searchResult=line.split("|") 
                 
 
     return searchResult  
@@ -260,8 +231,7 @@ def insert(filePath,listItems, listTableHeader,type):
     status =""
     
     with open(filePath, 'a') as f:
-      
-    #   searchID(filePath,listTableHeader[0]) 
+       
       if getSearchStatus(filePath,listTableHeader[0]) == 0:
            f.write(header_row)
            f.write('\n')
@@ -308,15 +278,13 @@ def update(ID,memberId, dateToUpdate,newStatus):
     newStatus as an 3rd argument (sting)\n
     return status Loan Avilability Status
     """
-
-    # title.lower()
+ 
     loanAvilabilityStatus = ""
     with open(logFilePath, 'r') as fp:
         # read all lines in a list
         lines = fp.readlines()
         lineNumber = 0
-        
-        # newvalues = [[]]
+         
         templist = []
         headerList = []
 
@@ -325,8 +293,7 @@ def update(ID,memberId, dateToUpdate,newStatus):
             for line in lines:
                 # line.lower()
                 # check if string present on a current line
-                if lineNumber == 0:
-                    # line = line.strip()            
+                if lineNumber == 0:         
                     headerList  = line.split("|") 
                     headerList.pop(0)
                     headerList.pop(len(templist)-1) 
@@ -338,27 +305,18 @@ def update(ID,memberId, dateToUpdate,newStatus):
                     fileId = int(id  )
                     ID = int(ID)
                     if fileId == ID and line.index != 0:
-
-                        # line = line.strip()
-                        # line = line.replace(" ","")            
+            
                         templist  = line.split("|")    
                         templist[2] = memberId 
                         templist[6] = newStatus 
-                        currentDate = str(datetime.today().strftime('%d/%m/%Y'))
-                        # currentDate = " " + currentDate + " "*len(currentDate)
+                        currentDate = str(datetime.today().strftime('%d/%m/%Y')) 
                         templist[dateToUpdate] = currentDate 
 
                         templist.pop(0)
-                        templist.pop(len(templist)-1) 
+                        templist.pop(len(templist)-1)  
 
-                        # newvalues.append(newvalues)
-                        
-                        numCol = len(headerList)
+                        numCol = len(headerList) 
 
-                        # for item in templist:
-                        # # writing each row to a string,
-                        # # then printing the string, is better for performance:)
-                        
                         s = "|"
                         for i in range(numCol):
                             entry = str(templist[i])
@@ -376,11 +334,7 @@ def update(ID,memberId, dateToUpdate,newStatus):
 
 # --------------------------------searchLogID---------------------------------------- #
 def getTop(logFilePath,type):    
-    """
-    search log by ID and get avilability status\n
-    Book ID as an argument (int)\n
-    return status 0 if not exist | 1 if exist 
-    """
+   
     with open(logFilePath, 'r') as fp:
         
         text = fp.readlines()
@@ -416,15 +370,14 @@ def getTop(logFilePath,type):
     return genreDictionary  
 # --------------------------------searchLogID---------------------------------------- #
 
-
-
 # --------------------------------searchLogID---------------------------------------- #
 def getAveragePrice(logFilePath,bookInfoFilePath,budget):    
-    """
-    search log by ID and get avilability status\n
-    Book ID as an argument (int)\n
-    return status 0 if not exist | 1 if exist 
-    """
+    # this function generate recommendation list by doing the following steps 
+    # 1.	Get top Genres from Book_Trascation_History based on number of checkouts/returns
+    # 2.	Get average prices for each Genres
+    # 3.	Create a recommended copies based on (budget/ Genres average price)
+    # 4.	Combine the data in a list to be viewed in the screen 
+
     
     topGenreDictionarySorted = dict()
     topGenrePrices = dict()
@@ -439,10 +392,7 @@ def getAveragePrice(logFilePath,bookInfoFilePath,budget):
 
     with open(bookInfoFilePath, 'r') as fp:
         
-        text = fp.readlines()
-        # Create an empty dictionary
-        # genreDictionary = dict()
-        
+        text = fp.readlines()        
         
         # Loop through each line of the file
         for line in text[1:]:
@@ -452,7 +402,6 @@ def getAveragePrice(logFilePath,bookInfoFilePath,budget):
             templist  = line.split("|")            
             topTopic = templist[2]
             price = int(templist[5])
-
             # Convert the characters in line to
             # lowercase to avoid case mismatch
             line = topTopic.lower()

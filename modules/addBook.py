@@ -36,9 +36,7 @@ def onClickAddBook():
         messagebox.showerror('Error',bookIDExist)
     else: 
         rootS.destroy 
-        messagebox.showinfo('Success',"Book added successfully!")   
-    
-         
+        messagebox.showinfo('Success',"Book added successfully!")           
 # --------------------------------addBook---------------------------------------- #
 
 # --------------------------------addBookPage---------------------------------------- #

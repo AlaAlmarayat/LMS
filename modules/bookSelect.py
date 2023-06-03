@@ -1,14 +1,10 @@
-# from modules.database import getTopGenres,insert
-# from bookSearch import *
 from tkinter import END, Button, Entry, Frame, Label, Tk, messagebox
 from matplotlib import pyplot as plt
 import numpy as np
 
-from modules.database import getAveragePrice, returnAllTitleLog, searchTitleLog, selectTopGenres,selectTopBooks
+from modules.database import getAveragePrice, selectTopGenres,selectTopBooks
 from modules.design import background, smallButton, tableView
-# from modules.database import selectTopGenres
-
-# selectTopGenres(bookTransactionHistoryFilePath)    
+  
 bookTransactionHistoryFilePath='.\\files\\Book_Transaction_History.txt'
 bookInfoFilePath ='.\\files\\Book_Info.txt'
 
@@ -19,23 +15,17 @@ def onClickShowData():
     """
     
     global treeview ,searchEntry
-    onClickReset() 
-    # budget =int(searchEntry.get())
-    searchString =str(searchEntry.get())
-    # if int(searchEntry.get()).isnumeric():  
+    onClickReset()  
+    searchString =str(searchEntry.get()) 
         
     if searchString == "" :
         messagebox.showerror('Error',"Budget could not be Empty")   
     else: # int(searchString).isnumeric():
         budget = int(searchEntry.get())
         recommededList = getAveragePrice(bookTransactionHistoryFilePath,bookInfoFilePath,budget)    
-    # else:
-    #     messagebox.showerror('Error',"Please enter a valid number")      
-         
-
     
-        
-    # print(logList)
+    #     messagebox.showerror('Error',"Please enter a valid number")      
+
     for value in recommededList:
         treeview.insert("", END, values=value)
 # --------------------------------showData---------------------------------------- #
@@ -46,8 +36,7 @@ def onClickReset():
     clear table view data
     """
     global treeview
-
-    #    treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22)  
+ 
     for item in treeview.get_children():
         treeview.delete(item)
 # --------------------------------clear_all---------------------------------------- #
@@ -63,8 +52,7 @@ def bookSelectPage():
     rootS.title("Recommendations List")   
     rootS.geometry("750x700+400+50")  
     rootS.resizable(0, 0)       
-    
-    # treeview = ttk.Treeview(rootS, columns=("Title", "Author", "Grene", "Loan Availabilty"), show='headings', height=22) 
+     
     treeview = tableView(rootS, "Number of Checkout/Returns", "Average Prices","Recommended Copies")     
 
     searchLabel = Label(rootS, text = "Budget: ", font=('calibri', 12, 'normal'))
@@ -97,7 +85,6 @@ def getTop(topicDictionary,type):
     """
     get top book Title/Genre recomendation chart
     """
-    # topicDictionary=selectTopGenres(bookTransactionHistoryFilePath)
      
     plt.rcdefaults()
     fig, ax = plt.subplots()

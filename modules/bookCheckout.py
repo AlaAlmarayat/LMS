@@ -32,8 +32,7 @@ def onClickBookCheckout():
        update(bookId,memberId, 7,"not available")
        addTransactionHistoryRecord (bookId)
     
-    rootS.destroy()
-    # rootS.quite   
+    rootS.destroy() 
 # --------------------------------bookCheckout---------------------------------------- #
 
 # --------------------------------bookCheckoutPage---------------------------------------- # 

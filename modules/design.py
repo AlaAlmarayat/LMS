@@ -1,7 +1,5 @@
 from tkinter import *
 from tkinter import ttk 
-# import numpy as np
-# import matplotlib.pyplot as plt 
 
 rootS = Tk
 bookInfoFilePath ='.\\files\\Book_Info.txt'
@@ -16,26 +14,11 @@ def background(root,title):
     """
 
     same=True
-    n=1
-    # Adding a background image
-    # background_image =Image.open("lib.jpg")
-    # [imageSizeWidth, imageSizeHeight] = background_image.size
-    # newImageSizeWidth = int(imageSizeWidth*n)
-    # if same:
-    #     newImageSizeHeight = int(imageSizeHeight*n) 
-    # else:
-    #     newImageSizeHeight = int(imageSizeHeight/n) 
-        
-    # background_image = background_image.resize((newImageSizeWidth,newImageSizeHeight),Image.ANTIALIAS)
-    # img = ImageTk.PhotoImage(background_image)
+    n=1 
 
     Canvas1 = Canvas(root)
     Canvas1.config(bg="#9e9d9d")
     Canvas1.pack(expand=True,fill=BOTH)
-    # Canvas1 = Canvas(root)
-    # Canvas1.create_image(300,340,image = img)      
-    # Canvas1.config(bg="white",width = newImageSizeWidth, height = newImageSizeHeight)
-    # Canvas1.pack(expand=True,fill=BOTH)
         
     headingFrame1 = Frame(root,bg="black",bd=5)
     headingFrame1.place(relx=0.2,rely=0.1,relwidth=0.6,relheight=0.16)
@@ -82,9 +65,7 @@ def tableView(rootS,column2,colum3,column4):
     treeview.column(colum3, stretch=NO)
     treeview.heading(column4, text=column4, anchor=CENTER)
     treeview.column(column4, stretch=NO)
-    
-    # listData = treeview "Loan Availabilty"
-
+     
     scrollbary.config(command=treeview.yview)
     scrollbary.place(x = 526, y = 7)
     scrollbarx.config(command=treeview.xview)
@@ -93,8 +74,7 @@ def tableView(rootS,column2,colum3,column4):
     style = ttk.Style()
     style.theme_use("default")
     style.map("Treeview")    
-    
-        
+          
 
     return treeview
 # --------------------------------emptyView---------------------------------------- #
