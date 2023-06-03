@@ -16,10 +16,10 @@
 | 444              |4444                | Novel          | paradox        | hamza           |not available           |03/06/2023          |                  |
 | 666             |                   | Fantacy       | the wizard    | Heba           | available             |                   |                 |
 | 777             |                   | Fantacy       | Nors Meth     | Rand           | available             |                   |                 |
-| 888              |8882                | Math           | calculus       | Dr. Ahmad       |not available           |03/06/2023          |                  |
+| 888              |8888                | Math           | calculus       | Dr. Ahmad       |available               |03/06/2023          |03/06/2023        |
 | 999             |                   | Fantacy       | Lord if the rings| tala           | available             |                   |                 |
 | 123              |2001                | Novel          | Dark ages      | Sali            |not available           |03/06/2023          |                  |
 | 222              |2222                | Sci-Fi         | Space          | Heba            |not available           |03/06/2023          |                  |
-| 333             |                   | Action        | war           | Basem          | available             |                   |                 |
+| 333              |3333                | Action         | war            | Basem           |not available           |03/06/2023          |                  |
 | 555             |                   | Math          | Math Advanced | Dr. Fadi       | available             |                   |                 |
 | 432              |3241                | Novel          | Novel          | Nader           |not available           |03/06/2023          |                  |

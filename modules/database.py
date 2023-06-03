@@ -420,6 +420,7 @@ def getAveragePrice(logFilePath,bookInfoFilePath,budget):
                     topGenrePrices[genre] = price
         
         resultList =[]
+        score = 0.7
         # tempList =[4]
         for genreInCount in topGenreDictionarySorted:
             
@@ -428,10 +429,12 @@ def getAveragePrice(logFilePath,bookInfoFilePath,budget):
                    title =  genreInCount
                    count =  topGenreDictionarySorted[genreInCount]
                    averagePrice =  round(topGenrePrices[genreInPrice] / topGenreDictionarySorted[genreInCount])
-                   recommededCopies = round( budget/ (topGenrePrices[genreInPrice] / topGenreDictionarySorted[genreInCount]))
+                   recommededCopies = round( (budget * score) / (topGenrePrices[genreInPrice] / topGenreDictionarySorted[genreInCount]))
                    tempList = [ title, count, averagePrice, recommededCopies]
 
                    resultList.append(tempList)
+                   budget = budget - (budget * score)
+                   score -= 0.1
             
                
         print(resultList)
