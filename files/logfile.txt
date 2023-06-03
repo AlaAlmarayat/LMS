@@ -1,24 +1,25 @@
 |     Book ID     |     Member ID     |     Genre     |     Title     |     Author     |   Loan Availability   |   Checkout Date   |   Return Date   |
 | 1               |                   | Fantacy       | Aliens        | ahmad          | available             |                   |                 |
 | 2                |2222                | Math           | Simple Math    | Mazen           |available               |03/06/2023          |03/06/2023        |
-| 22              |                   | English       | English 101   | Subhi          | available             |                   |                 |
+| 22               |2222                | English        | English 101    | Subhi           |available               |03/06/2023          |03/06/2023        |
 | 23              |                   | English       | English 102   | Subhi          | available             |                   |                 |
-| 9               |                   | Novel         | Witcher       | jhon           | available             |                   |                 |
-| 10              |                   | Novel         | Witcher 2     | jhon           | available             |                   |                 |
+| 9                |5555                | Novel          | Witcher        | jhon            |not available           |03/06/2023          |                  |
+| 10               |1010                | Novel          | Witcher 2      | jhon            |not available           |03/06/2023          |                  |
 | 77              |                   | Sci-fi        | Travel back in time| Yammato        | available             |                   |                 |
 | 33               |3333                | CS             | python for beginners| Dr. Fawaz       |not available           |03/06/2023          |                  |
-| 55              |                   | Novel         | beloved       | Scott          | available             |                   |                 |
+| 55               |5555                | Novel          | beloved        | Scott           |not available           |03/06/2023          |                  |
 | 66              |                   | Action        | once upon a time in Amman| Khaled         | available             |                   |                 |
 | 145             |                   | CS            | Advanced Java | Dr. Fawaz      | available             |                   |                 |
 | 166             |                   | English       | advanced English| Tom            | available             |                   |                 |
 | 11              |                   | Action        | Jhon Wick     | Jhon           | available             |                   |                 |
 | 545             |                   | Sci-Fi        | travel back in time | Marty          | available             |                   |                 |
-| 444             |                   | Novel         | paradox       | hamza          | available             |                   |                 |
+| 444              |4444                | Novel          | paradox        | hamza           |not available           |03/06/2023          |                  |
 | 666             |                   | Fantacy       | the wizard    | Heba           | available             |                   |                 |
 | 777             |                   | Fantacy       | Nors Meth     | Rand           | available             |                   |                 |
-| 888             |                   | Math          | calculus      | Dr. Ahmad      | available             |                   |                 |
+| 888              |8882                | Math           | calculus       | Dr. Ahmad       |not available           |03/06/2023          |                  |
 | 999             |                   | Fantacy       | Lord if the rings| tala           | available             |                   |                 |
-| 123             |                   | Novel         | Dark ages     | Sali           | available             |                   |                 |
-| 222             |                   | Sci-Fi        | Space         | Heba           | available             |                   |                 |
+| 123              |2001                | Novel          | Dark ages      | Sali            |not available           |03/06/2023          |                  |
+| 222              |2222                | Sci-Fi         | Space          | Heba            |not available           |03/06/2023          |                  |
 | 333             |                   | Action        | war           | Basem          | available             |                   |                 |
 | 555             |                   | Math          | Math Advanced | Dr. Fadi       | available             |                   |                 |
+| 432              |3241                | Novel          | Novel          | Nader           |not available           |03/06/2023          |                  |
