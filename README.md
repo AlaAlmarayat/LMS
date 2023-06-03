@@ -1,12 +1,5 @@
 # Library Management System
 
-
-run below command to install tkinter
-  pip install tkinter
-
-
-
-
 - [Summary](#summary)
 - [Run program](#run-program)
 
